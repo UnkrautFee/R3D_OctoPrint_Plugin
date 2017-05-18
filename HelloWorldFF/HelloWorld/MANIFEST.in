@@ -1,0 +1,4 @@
+include README.md
+recursive-include HelloWorld/templates *
+recursive-include HelloWorld/translations *
+recursive-include HelloWorld/static *
