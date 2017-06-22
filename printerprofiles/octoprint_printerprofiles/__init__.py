@@ -22,14 +22,17 @@ class PrinterprofilesPlugin(octoprint.plugin.StartupPlugin,
 	
 	#env = Environment(loader=PackageLoader('printerprofiles', 'templates'))
 	
-	def __init__(self):
-		self._logger = logging.getLogger('octoprint.plugins.printerprofiles')
+	#def __init__(self):
+	#	self._logger = logging.getLogger('octoprint.plugins.printerprofiles')
 
 	##~~ SettingsPlugin mixin
 
 	def get_settings_defaults(self):
 		return dict(
 			# put your plugin's default settings here
+			file_name_fast="D:/Daten/Studium/6.Semester/Projekt/config_blue.ini",
+			file_name_medium="D:/Daten/Studium/6.Semester/Projekt/config_blue.ini",
+			file_name_slow="D:/Daten/Studium/6.Semester/Projekt/config_blue.ini"
 		)
 
 	##~~ AssetPlugin mixin

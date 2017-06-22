@@ -1,5 +1,5 @@
 <div id="profileSelection">
 	<label for="fast"><input type="radio" id="fast" name="quality" value="0" data-bind="click: plugin.cura._load_profile('D:/Daten/Studium/6.Semester/Projekt/config_blue.ini')">Fast</label>
-	<label for="medium"><input type="radio" id="medium" name="quality" value="1" data-bind="click: plugin.cura._load_profile('D:/Daten/Studium/6.Semester/Projekt/config_blue.ini')">Medium</label>
-	<label for="slow"><input type="radio" id="slow" name="quality" value="2" data-bind="click: plugin.cura._load_profile('D:/Daten/Studium/6.Semester/Projekt/config_blue.ini')">Slow</label>
+	<label for="medium"><input type="radio" id="medium" name="quality" value="1" data-bind="click: plugin.cura._load_profile({{ plugin_printerprofiles_file_name_medium }})">Medium</label>
+	<label for="slow"><input type="radio" id="slow" name="quality" value="2" data-bind="click: plugin.cura._load_profile({{ plugin_printerprofiles_file_name_slow }})">Slow</label>
 </div>
