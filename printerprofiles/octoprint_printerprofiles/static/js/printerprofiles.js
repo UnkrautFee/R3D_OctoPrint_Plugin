@@ -12,14 +12,17 @@ $(function() {
         
         self.selectProfileFast = function() {
         	console.log("selectProfileFast");
+        	document.getElementById("fast").checked = true;
         };
         
         self.selectProfileMedium = function() {
         	console.log("selectProfileMedium");
+        	document.getElementById("medium").checked = true;
         };
         
         self.selectProfileSlow = function() {
         	console.log("selectProfileSlow");
+        	document.getElementById("slow").checked = true;
         };
 
         // assign the injected parameters, e.g.:
@@ -37,6 +40,6 @@ $(function() {
         ["settingsViewModel"],
 
         // e.g. #settings_plugin_printerprofiles, #tab_plugin_printerprofiles, ...
-        [ /* ... */ ]
+        ["#sidebar_plugin_printerprofiles"]
     ]);
 });
