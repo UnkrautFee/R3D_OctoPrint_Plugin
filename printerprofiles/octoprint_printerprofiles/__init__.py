@@ -10,10 +10,20 @@ from __future__ import absolute_import
 # Take a look at the documentation on what other plugin mixins are available.
 
 import octoprint.plugin
+#from jinja2 import Environment, PackageLoader
+import flask
+import logging
+import logging.handlers
 
-class PrinterprofilesPlugin(octoprint.plugin.SettingsPlugin,
+class PrinterprofilesPlugin(octoprint.plugin.StartupPlugin,
+							octoprint.plugin.SettingsPlugin,
                             octoprint.plugin.AssetPlugin,
                             octoprint.plugin.TemplatePlugin):
+	
+	#env = Environment(loader=PackageLoader('printerprofiles', 'templates'))
+	
+	def __init__(self):
+		self._logger = logging.getLogger('octoprint.plugins.printerprofiles')
 
 	##~~ SettingsPlugin mixin
 
@@ -59,9 +69,50 @@ class PrinterprofilesPlugin(octoprint.plugin.SettingsPlugin,
 
 	def get_template_configs(self):
 		return [
-			dict(type="sidebar", custom_bindings=False, template_header="printerprofiles_header.jinja2")
+			dict(type="sidebar", custom_bindings=True, template_header="printerprofiles_header.jinja2")
 		]
-    
+		
+	def on_after_startup(self):
+		self._logger.info("PrinterProfiles Loaded")
+		
+	def get_slicer_profile(self, path):
+		profile_dict = self._load_profile(path)
+
+		display_name = None
+		description = None
+		if "_display_name" in profile_dict:
+			display_name = profile_dict["_display_name"]
+			del profile_dict["_display_name"]
+		if "_description" in profile_dict:
+			description = profile_dict["_description"]
+			del profile_dict["_description"]
+
+		properties = self.get_slicer_properties()
+		return octoprint.slicing.SlicingProfile(properties["type"], "unknown", profile_dict, display_name=display_name, description=description)
+		
+	def _load_profile(self, path):
+		import yaml
+		logging.warning("_load_profile was called.")
+		profile_dict = dict()
+		with open(path, "r") as f:
+			logging.warning("Trying to read profile from {path}".format(path=path))
+			try:
+				profile_dict = yaml.safe_load(f)
+			except:
+				logging.warning("Couldn't read profile from {path}".format(path=path))
+				raise IOError("Couldn't read profile from {path}".format(path=path))
+		if "gcode_flavor" in profile_dict and not isinstance(profile_dict["gcode_flavor"], (list, tuple)):
+			profile_dict["gcode_flavor"] = parse_gcode_flavor(profile_dict["gcode_flavor"])
+			self._save_profile(path, profile_dict)
+		return profile_dict
+	
+	#env.globals.update(_load_profile=_load_profile)
+	
+	def _save_profile(self, path, profile, allow_overwrite=True):
+		import yaml
+		with octoprint.util.atomic_write(path, "wb", max_permissions=0o666) as f:
+			yaml.safe_dump(profile, f, default_flow_style=False, indent="  ", allow_unicode=True)
+			
     
 # If you want your plugin to be registered within OctoPrint under a different name than what you defined in setup.py
 # ("OctoPrint-PluginSkeleton"), you may define that here. Same goes for the other metadata derived from setup.py that

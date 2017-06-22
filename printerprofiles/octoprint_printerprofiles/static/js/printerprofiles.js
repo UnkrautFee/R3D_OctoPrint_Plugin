@@ -7,6 +7,20 @@
 $(function() {
     function PrinterprofilesViewModel(parameters) {
         var self = this;
+        
+        self.settings = parameters[0];
+        
+        self.selectProfileFast = function() {
+        	console.log("selectProfileFast");
+        };
+        
+        self.selectProfileMedium = function() {
+        	console.log("selectProfileMedium");
+        };
+        
+        self.selectProfileSlow = function() {
+        	console.log("selectProfileSlow");
+        };
 
         // assign the injected parameters, e.g.:
         // self.loginStateViewModel = parameters[0];
@@ -20,7 +34,7 @@ $(function() {
         PrinterprofilesViewModel,
 
         // e.g. loginStateViewModel, settingsViewModel, ...
-        [ /* "loginStateViewModel", "settingsViewModel" */ ],
+        ["settingsViewModel"],
 
         // e.g. #settings_plugin_printerprofiles, #tab_plugin_printerprofiles, ...
         [ /* ... */ ]

@@ -1,0 +1,23 @@
+<div class="profileSelection">
+	<div>
+		<label class="profileLabel">{{ _('\'Fast\' ini file') }}</label>
+		<span class="btn fileinput-button">
+       		<span>{{ _('Browse...') }}</span><input id="settingsImportFast" type="file" name="fast" data-url="{{ url_for("plugin.cura.import_cura_profile") }}" accept=".ini">
+   		</span>
+   		<span class="add-on" data-bind="text: settings.plugins.octoprint_printerprofiles.file_name_fast"></span>
+   	</div>
+   	<div>
+		<label class="profileLabel">{{ _('\'Medium\' ini file') }}</label>
+		<span class="btn fileinput-button">
+    	   	<span>{{ _('Browse...') }}</span><input id="settingsImportMedium" type="file" name="medium" data-url="{{ url_for("plugin.cura.import_cura_profile") }}" accept=".ini">
+   		</span>
+   		<span class="add-on" data-bind="text: settings.plugins.octoprint_printerprofiles.file_name_medium"></span>
+   	</div>
+   	<div>
+		<label class="profileLabel">{{ _('\'Slow\' ini file') }}</label>
+		<span class="btn fileinput-button">
+     	   <span>{{ _('Browse...') }}</span><input id="settingsImportSlow" type="file" name="slow" data-url="{{ url_for("plugin.cura.import_cura_profile") }}" accept=".ini">
+    	</span>
+    	<span class="add-on" data-bind="text: settings.plugins.octoprint_printerprofiles.file_name_slow"></span>
+    </div>
+</div>
