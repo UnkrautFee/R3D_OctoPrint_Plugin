@@ -19,11 +19,6 @@ class PrinterprofilesPlugin(octoprint.plugin.StartupPlugin,
 							octoprint.plugin.SettingsPlugin,
                             octoprint.plugin.AssetPlugin,
                             octoprint.plugin.TemplatePlugin):
-	
-	#env = Environment(loader=PackageLoader('printerprofiles', 'templates'))
-	
-	#def __init__(self):
-	#	self._logger = logging.getLogger('octoprint.plugins.printerprofiles')
 
 	##~~ SettingsPlugin mixin
 
@@ -76,8 +71,9 @@ class PrinterprofilesPlugin(octoprint.plugin.StartupPlugin,
 		]
 		
 	def on_after_startup(self):
-		self._logger.info("PrinterProfiles Loaded")
+		self._logger.info("PrinterProfiles Loaded; file_name_fast = %s" % self._settings.get(["file_name_fast"]))
 		
+	#wahrscheinlich unnötig, weil das cura plugin diese funktion ja schon hat.
 	def get_slicer_profile(self, path):
 		profile_dict = self._load_profile(path)
 
@@ -93,6 +89,7 @@ class PrinterprofilesPlugin(octoprint.plugin.StartupPlugin,
 		properties = self.get_slicer_properties()
 		return octoprint.slicing.SlicingProfile(properties["type"], "unknown", profile_dict, display_name=display_name, description=description)
 		
+	#wahrscheinlich unnötig, weil das cura plugin diese funktion ja schon hat.
 	def _load_profile(self, path):
 		import yaml
 		logging.warning("_load_profile was called.")
@@ -109,8 +106,8 @@ class PrinterprofilesPlugin(octoprint.plugin.StartupPlugin,
 			self._save_profile(path, profile_dict)
 		return profile_dict
 	
-	#env.globals.update(_load_profile=_load_profile)
 	
+	#wahrscheinlich unnötig, weil das cura plugin diese funktion ja schon hat.
 	def _save_profile(self, path, profile, allow_overwrite=True):
 		import yaml
 		with octoprint.util.atomic_write(path, "wb", max_permissions=0o666) as f:

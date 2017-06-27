@@ -11,17 +11,17 @@ $(function() {
         self.settings = parameters[0];
         
         self.selectProfileFast = function() {
-        	console.log("selectProfileFast");
+        	console.log("selectProfileFast: " + self.settings.settings.plugins.printerprofiles.file_name_fast());
         	document.getElementById("fast").checked = true;
         };
         
         self.selectProfileMedium = function() {
-        	console.log("selectProfileMedium");
+        	console.log("selectProfileMedium: " + self.settings.settings.plugins.printerprofiles.file_name_medium());
         	document.getElementById("medium").checked = true;
         };
         
         self.selectProfileSlow = function() {
-        	console.log("selectProfileSlow");
+        	console.log("selectProfileSlow: " + self.settings.settings.plugins.printerprofiles.file_name_slow());
         	document.getElementById("slow").checked = true;
         };
 
