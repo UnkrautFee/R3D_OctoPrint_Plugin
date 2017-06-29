@@ -11,18 +11,21 @@ $(function() {
         self.settings = parameters[0];
         
         self.selectProfileFast = function() {
+        	OctoPrint.slicing.updateProfileForSlicer("cura", self.settings.settings.plugins.printerprofiles.file_name_fast(), {default: true}, {});
         	console.log("selectProfileFast: " + self.settings.settings.plugins.printerprofiles.file_name_fast());
-        	document.getElementById("fast").checked = true;
+        	return true;
         };
         
         self.selectProfileMedium = function() {
+        	OctoPrint.slicing.updateProfileForSlicer("cura", self.settings.settings.plugins.printerprofiles.file_name_medium(), {default: true}, {});
         	console.log("selectProfileMedium: " + self.settings.settings.plugins.printerprofiles.file_name_medium());
-        	document.getElementById("medium").checked = true;
+        	return true;
         };
         
         self.selectProfileSlow = function() {
+        	OctoPrint.slicing.updateProfileForSlicer("cura", self.settings.settings.plugins.printerprofiles.file_name_slow(), {default: true}, {});
         	console.log("selectProfileSlow: " + self.settings.settings.plugins.printerprofiles.file_name_slow());
-        	document.getElementById("slow").checked = true;
+        	return true;
         };
 
         // assign the injected parameters, e.g.:
@@ -30,6 +33,7 @@ $(function() {
         // self.settingsViewModel = parameters[1];
 
         // TODO: Implement your plugin's view model here.
+       
     }
 
     // view model class, parameters for constructor, container to bind to
