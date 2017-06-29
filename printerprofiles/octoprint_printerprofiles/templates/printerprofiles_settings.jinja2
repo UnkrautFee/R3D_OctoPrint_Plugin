@@ -1,23 +1,20 @@
 <div class="profileSelection">
-	<div>
-		<label class="profileLabel">{{ _('\'Fast\' ini file') }}</label>
-		<span class="btn fileinput-button">
-       		<span>{{ _('Browse...') }}</span><input id="settingsImportFast" type="file" name="fast" data-url="{{ url_for("plugin.cura.import_cura_profile") }}" accept=".ini">
-   		</span>
-   		<span class="add-on" data-bind="text: settings.plugins.octoprint_printerprofiles.file_name_fast"></span>
-   	</div>
-   	<div>
-		<label class="profileLabel">{{ _('\'Medium\' ini file') }}</label>
-		<span class="btn fileinput-button">
-    	   	<span>{{ _('Browse...') }}</span><input id="settingsImportMedium" type="file" name="medium" data-url="{{ url_for("plugin.cura.import_cura_profile") }}" accept=".ini">
-   		</span>
-   		<span class="add-on" data-bind="text: settings.plugins.octoprint_printerprofiles.file_name_medium"></span>
-   	</div>
-   	<div>
-		<label class="profileLabel">{{ _('\'Slow\' ini file') }}</label>
-		<span class="btn fileinput-button">
-     	   <span>{{ _('Browse...') }}</span><input id="settingsImportSlow" type="file" name="slow" data-url="{{ url_for("plugin.cura.import_cura_profile") }}" accept=".ini">
-    	</span>
-    	<span class="add-on" data-bind="text: settings.plugins.octoprint_printerprofiles.file_name_slow"></span>
-    </div>
+	<table class="table table-striped table-hover table-condensed table-hover">
+		<thead>
+        <tr>
+            <th class="profileTable_name">Name</th>
+            <th class="profileTable_fast">Fast</th>
+            <th class="profileTable_medium">Medium</th>
+            <th class="profileTable_slow">Slow</th>
+        </tr>
+        </thead>
+        <tbody data-bind="foreach: testObjects">
+        	<tr>
+        		<td class="settings_profileTable_name" data-bind="text: name"> </td>
+        		<td><a href="#" class="icon-star" data-bind="click: $parent.setProfileFast"></a></td>
+        		<td><a href="#" class="icon-star" data-bind="click: $parent.setProfileMedium"></a></td>
+        		<td><a href="#" class="icon-star" data-bind="click: $parent.setProfileSlow"></a></td>
+        	</tr>
+        </tbody>
+	</table>
 </div>
