@@ -16,7 +16,12 @@ $(function() {
         	{name: 'Drei'}
         ]);
         
-        self.curaProfiles = OctoPrint.slicing.listProfilesForSlicer("cura", {});
+        OctoPrint.slicing.listProfilesForSlicer("cura", {}).done(function(n) {
+        	self.curaProfiles = n;
+        	console.log(n);
+        	console.log(self.curaProfiles);
+        });
+        
         
         self.selectProfileFast = function() {
         	OctoPrint.slicing.updateProfileForSlicer("cura", self.settings.settings.plugins.printerprofiles.file_name_fast(), {default: true}, {});
