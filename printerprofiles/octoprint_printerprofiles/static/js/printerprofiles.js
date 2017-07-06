@@ -16,6 +16,8 @@ $(function() {
         	{name: 'Drei'}
         ]);
         
+        self.curaProfiles = OctoPrint.slicing.listProfilesForSlicer("cura", {});
+        
         self.selectProfileFast = function() {
         	OctoPrint.slicing.updateProfileForSlicer("cura", self.settings.settings.plugins.printerprofiles.file_name_fast(), {default: true}, {});
         	console.log("selectProfileFast: " + self.settings.settings.plugins.printerprofiles.file_name_fast());
@@ -41,16 +43,19 @@ $(function() {
         // TODO: Implement your plugin's view model here.
         
         self.setProfileFast = function(profile) {
+        OctoPrint.settings.savePluginSettings("printerprofiles", {file_name_fast: profile.name}, {});
         console.log("(Not implemented)Set fast profile to: " + profile.name);
         return true;
         };
         
         self.setProfileMedium = function(profile) {
+        OctoPrint.settings.savePluginSettings("printerprofiles", {file_name_medium: profile.name}, {});
         	console.log("(Not implemented)Set medium profile to: " + profile.name);
         	return true;
         };
         
         self.setProfileSlow = function(profile) {
+        OctoPrint.settings.savePluginSettings("printerprofiles", {file_name_slow: profile.name}, {});
         	console.log("(Not implemented)Set slow profile to: " + profile.name);
         	return true;
         };
