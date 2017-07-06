@@ -10,6 +10,12 @@ $(function() {
         
         self.settings = parameters[0];
         
+        self.testObjects = ko.observableArray([
+        	{name: 'Eins'}, 
+        	{name: 'Zwei'}, 
+        	{name: 'Drei'}
+        ]);
+        
         self.selectProfileFast = function() {
         	OctoPrint.slicing.updateProfileForSlicer("cura", self.settings.settings.plugins.printerprofiles.file_name_fast(), {default: true}, {});
         	console.log("selectProfileFast: " + self.settings.settings.plugins.printerprofiles.file_name_fast());
@@ -27,12 +33,27 @@ $(function() {
         	console.log("selectProfileSlow: " + self.settings.settings.plugins.printerprofiles.file_name_slow());
         	return true;
         };
-
+        
         // assign the injected parameters, e.g.:
         // self.loginStateViewModel = parameters[0];
         // self.settingsViewModel = parameters[1];
 
         // TODO: Implement your plugin's view model here.
+        
+        self.setProfileFast = function(profile) {
+        console.log("(Not implemented)Set fast profile to: " + profile.name);
+        return true;
+        };
+        
+        self.setProfileMedium = function(profile) {
+        	console.log("(Not implemented)Set medium profile to: " + profile.name);
+        	return true;
+        };
+        
+        self.setProfileSlow = function(profile) {
+        	console.log("(Not implemented)Set slow profile to: " + profile.name);
+        	return true;
+        };
        
     }
 
@@ -44,6 +65,6 @@ $(function() {
         ["settingsViewModel"],
 
         // e.g. #settings_plugin_printerprofiles, #tab_plugin_printerprofiles, ...
-        ["#sidebar_plugin_printerprofiles"]
+        ["#sidebar_plugin_printerprofiles", "#settings_plugin_printerprofiles"]
     ]);
 });
