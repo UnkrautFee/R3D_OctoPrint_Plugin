@@ -1,1 +1,8 @@
 /* TODO: Have your plugin's CSS files generated to here. */
+.icon-star {
+	color: yellow;
+	
+}
+.icon-star:checked {
+	color: red;
+}
