@@ -50,32 +50,32 @@ $(function() {
         self.setProfileFast = function(profile) {
         OctoPrint.settings.savePluginSettings("printerprofiles", {file_name_fast: profile.displayName}, {});
         console.log("Set fast profile to: " + profile.displayName);
-        $(".icon-star[id$='_fast']").css("color", "#ffff00");
-        $("#" + profile.displayName + "_fast").css("color", "#ff0000");
+        $(".icon-star[id$='_fast']").css("color", "#BEBEBE");
+        $("#" + profile.displayName + "_fast").css("color", "#000000");
         return true;
         };
         
         self.setProfileMedium = function(profile) {
         OctoPrint.settings.savePluginSettings("printerprofiles", {file_name_medium: profile.displayName}, {});
         	console.log("Set medium profile to: " + profile.displayName);
-        	$(".icon-star[id$='_medium']").css("color", "#ffff00");
-        	$("#" + profile.displayName + "_medium").css("color", "#ff0000");
+        	$(".icon-star[id$='_medium']").css("color", "#BEBEBE");
+        	$("#" + profile.displayName + "_medium").css("color", "#000000");
         	return true;
         };
         
         self.setProfileSlow = function(profile) {
         OctoPrint.settings.savePluginSettings("printerprofiles", {file_name_slow: profile.displayName}, {});
         	console.log("Set slow profile to: " + profile.displayName);
-        	$(".icon-star[id$='_slow']").css("color", "#ffff00");
-        	$("#" + profile.displayName + "_slow").css("color", "#ff0000");
+        	$(".icon-star[id$='_slow']").css("color", "#BEBEBE");
+        	$("#" + profile.displayName + "_slow").css("color", "#000000");
         	return true;
         };
         
         self.onAfterBinding = function() {
         	console.log("fast: " + self.settings.settings.plugins.printerprofiles.file_name_fast() + ", medium: " + self.settings.settings.plugins.printerprofiles.file_name_medium() + ", slow: " + self.settings.settings.plugins.printerprofiles.file_name_slow());
-        	$("#" + self.settings.settings.plugins.printerprofiles.file_name_fast() + "_fast").css("color", "#ff0000");
-        	$("#" + self.settings.settings.plugins.printerprofiles.file_name_medium() + "_medium").css("color", "#ff0000");
-        	$("#" + self.settings.settings.plugins.printerprofiles.file_name_slow() + "_slow").css("color", "#ff0000");
+        	$("#" + self.settings.settings.plugins.printerprofiles.file_name_fast() + "_fast").css("color", "#000000");
+        	$("#" + self.settings.settings.plugins.printerprofiles.file_name_medium() + "_medium").css("color", "#000000");
+        	$("#" + self.settings.settings.plugins.printerprofiles.file_name_slow() + "_slow").css("color", "#000000");
         };
        
     }
