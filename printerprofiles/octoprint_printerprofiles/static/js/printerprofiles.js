@@ -71,7 +71,12 @@ $(function() {
         	return true;
         };
         
-        
+        self.onAfterBinding = function() {
+        	console.log("fast: " + self.settings.settings.plugins.printerprofiles.file_name_fast() + ", medium: " + self.settings.settings.plugins.printerprofiles.file_name_medium() + ", slow: " + self.settings.settings.plugins.printerprofiles.file_name_slow());
+        	$("#" + self.settings.settings.plugins.printerprofiles.file_name_fast() + "_fast").css("color", "#ff0000");
+        	$("#" + self.settings.settings.plugins.printerprofiles.file_name_medium() + "_medium").css("color", "#ff0000");
+        	$("#" + self.settings.settings.plugins.printerprofiles.file_name_slow() + "_slow").css("color", "#ff0000");
+        };
        
     }
 
